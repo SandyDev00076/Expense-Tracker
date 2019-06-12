@@ -1,4 +1,75 @@
 .container {
-    background: green;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    width: 100%;
+    font-family: zrnic;
+    cursor: default;
+}
+
+.calculator {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px grey;
+    width: 40%;
+}
+
+.moneyplace {
+    border: 2px solid grey;
+    border-radius: 5px;
+    color: rgb(112, 112, 112);
+    font-size: 2em;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.moneylabel {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 1.5em;
+    color: cornflowerblue;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.moneylabeloption {
+    padding: 5px;
+    border-radius: 5px;
+    font-family: zrnic;
+    font-size: 0.9em;
+    color: purple;
+    outline: none;
+}
+
+.keys {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+}
+
+.powerkey {
+    padding: 5px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-property: background-color color;
+    transition-duration: 0.25s;
+    cursor: pointer;
+}
+
+.powerkey:hover {
+    background-color: #333;
     color: white;
+}
+
+@font-face {
+    font-family: zrnic;
+    src: url(../../assets/fonts/zrnic.woff);
 }
