@@ -104,6 +104,21 @@
     background-color: darkgreen;
 }
 
+.remark {
+    width: 100%;
+    text-align: center;
+}
+
+.remarkfield {
+    outline: none;
+    border: none;
+    text-align: center;
+    font-family: zrnic;
+    font-size: 1.3em;
+    color: grey;
+    width: 80%;
+}
+
 @font-face {
     font-family: zrnic;
     src: url(../../assets/fonts/zrnic.woff);

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './Home.css';
 import { Templates } from '../../utilities/constants';
+import { Expense } from '../../utilities/expense';
 
 export class HomeComponent extends Component {
     state = {
-        money: ''
+        money: '',
+        label: 'None',
+        remark: ''
     }
     
     render() {
@@ -20,7 +23,7 @@ export class HomeComponent extends Component {
                         <i className="fas fa-caret-right"></i>
                         <i className="fas fa-caret-right"></i>
                     </span>
-                    <select className="moneylabeloption">
+                    <select className="moneylabeloption" onChange={(event) => this.getLabel(event)}>
                         {Templates.map(template => {
                             return (<option>{template.title}</option>)
                         })}
@@ -42,6 +45,9 @@ export class HomeComponent extends Component {
                     <div className="powerkey" onClick={() => this.changeMoney('-1')}>DEL</div>
                 </div>
                 <hr />
+                <div className="remark">
+                    <input className="remarkfield" id="remarkid" placeholder="Add some remark" onChange={(event) => this.getRemark(event)}></input>
+                </div>
                 <div className="taskbar">
                     <div className="taskbtn" id="clear" onClick={() => this.changeMoney('#')}>
                         Clear
@@ -61,7 +67,9 @@ export class HomeComponent extends Component {
             }
             break;
             case '#': {
-                this.setState({ money: '' });
+                this.setState({ money: '', remark: '', label: '' }, () => {
+                    document.getElementById('remarkid').value = '';
+                });
             }
             break;
             default: {
@@ -70,7 +78,17 @@ export class HomeComponent extends Component {
         }
     }
 
+    getRemark = (evt) => {
+        this.setState({ remark: evt.target.value });
+    }
+
+    getLabel = (evt) => {
+        this.setState({ label: evt.target.value });
+    }
+
     recordExpense = () => {
-        console.log(this.state.money);
+        let { money, label, remark } = this.state;
+        let expense = new Expense(`${new Date().toDateString()} + ${new Date().toTimeString()}`, remark, label, money);
+        console.log(expense);
     }
 }
