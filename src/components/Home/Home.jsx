@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Home.css';
 import { Templates } from '../../utilities/constants';
 import { Expense } from '../../utilities/expense';
+import axios from 'axios';
 
 export class HomeComponent extends Component {
     state = {
@@ -23,7 +24,7 @@ export class HomeComponent extends Component {
                         <i className="fas fa-caret-right"></i>
                         <i className="fas fa-caret-right"></i>
                     </span>
-                    <select className="moneylabeloption" onChange={(event) => this.getLabel(event)}>
+                    <select className="moneylabeloption" onChange={(event) => this.getLabel(event)} id="templates">
                         {Templates.map(template => {
                             return (<option>{template.title}</option>)
                         })}
@@ -69,6 +70,7 @@ export class HomeComponent extends Component {
             case '#': {
                 this.setState({ money: '', remark: '', label: '' }, () => {
                     document.getElementById('remarkid').value = '';
+                    document.getElementById('templates').value = 'None';
                 });
             }
             break;
@@ -89,6 +91,9 @@ export class HomeComponent extends Component {
     recordExpense = () => {
         let { money, label, remark } = this.state;
         let expense = new Expense(`${new Date().toDateString()} + ${new Date().toTimeString()}`, remark, label, money);
-        console.log(expense);
+        axios.post('http://localhost:4000/expenses', expense).then((data) => {
+            alert(data.data.message);
+            this.changeMoney('#');
+        });
     }
 }
