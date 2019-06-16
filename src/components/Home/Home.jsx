@@ -3,6 +3,8 @@ import './Home.css';
 import { Templates } from '../../utilities/constants';
 import { Expense } from '../../utilities/expense';
 import axios from 'axios';
+import * as moment from 'moment';
+import { ListComponent } from '../List/List';
 
 export class HomeComponent extends Component {
     state = {
@@ -58,6 +60,7 @@ export class HomeComponent extends Component {
                     </div>
                 </div>
             </div>
+            <ListComponent />
         </div>)
     }
 
@@ -90,7 +93,7 @@ export class HomeComponent extends Component {
 
     recordExpense = () => {
         let { money, label, remark } = this.state;
-        let expense = new Expense(`${new Date().toDateString()} + ${new Date().toTimeString()}`, remark, label, money);
+        let expense = new Expense(moment().toISOString(true), remark, label, parseInt(money));
         axios.post('http://localhost:4000/expenses', expense).then((data) => {
             alert(data.data.message);
             this.changeMoney('#');
