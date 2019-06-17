@@ -20,7 +20,7 @@ export class HomeComponent extends Component {
                     {(this.state.money.length === 0) ? "What's the expense?" : this.state.money}
                 </div>
                 <div className="moneylabel">
-                    <span>Add a label</span>
+                    <span>Pick a label</span>
                     <span>
                         <i className="fas fa-caret-right"></i>
                         <i className="fas fa-caret-right"></i>

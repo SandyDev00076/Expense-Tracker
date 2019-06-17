@@ -14,7 +14,7 @@
 
 .allexpenses {
     overflow-y: auto;
-    max-height: 80vh;
+    max-height: 75vh;
     text-align: left;
     margin-bottom: 10px;
     border-bottom: 1px solid rgb(221, 221, 221);

@@ -21,7 +21,7 @@ export class ListComponent extends Component {
                             <span className="expenseremark">{expense.remark}</span>
                         </div>
                         <div>
-                            <span className="expenselabel">{expense.label}</span>
+                            <span className="expenselabel">{(expense.label) ? expense.label : 'No Label'}</span>
                             <br />
                             <br />
                             <i className="far fa-trash-alt" id="delicon" onClick={() => this.deleteExpense(expense._id)}></i>
