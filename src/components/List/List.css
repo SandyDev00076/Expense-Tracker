@@ -1,5 +1,5 @@
 .listcontainer {
-    width: 20%;
+    width: 30%;
     border: 2px solid lightgrey;
     border-radius: 5px;
     margin-left: 5px;
@@ -14,7 +14,7 @@
 
 .allexpenses {
     overflow-y: auto;
-    max-height: 75vh;
+    max-height: 85vh;
     text-align: left;
     margin-bottom: 10px;
     border-bottom: 1px solid rgb(221, 221, 221);

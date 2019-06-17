@@ -5,12 +5,14 @@ import { Expense } from '../../utilities/expense';
 import axios from 'axios';
 import * as moment from 'moment';
 import { ListComponent } from '../List/List';
+import { Modal, Button } from 'react-bootstrap';
 
 export class HomeComponent extends Component {
     state = {
         money: '',
         label: 'None',
-        remark: ''
+        remark: '',
+        showAddedModal: false
     }
     
     render() {
@@ -59,6 +61,17 @@ export class HomeComponent extends Component {
                         Record
                     </div>
                 </div>
+                <Modal show={this.state.showAddedModal} onHide={() => this.displayAddedModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Expense Added</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        Expense has been added successfully!
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={() => this.displayAddedModal(false)}>Ok</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
             <ListComponent />
         </div>)
@@ -95,8 +108,12 @@ export class HomeComponent extends Component {
         let { money, label, remark } = this.state;
         let expense = new Expense(moment().toISOString(true), remark, label, parseInt(money));
         axios.post('http://localhost:4000/expenses', expense).then((data) => {
-            alert(data.data.message);
+            this.displayAddedModal(true);
             this.changeMoney('#');
         });
+    }
+
+    displayAddedModal = (flag) => {
+        this.setState({ showAddedModal: flag });
     }
 }
