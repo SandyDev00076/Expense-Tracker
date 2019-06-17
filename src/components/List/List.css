@@ -3,4 +3,79 @@
     border: 2px solid lightgrey;
     border-radius: 5px;
     margin-left: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.listtitle {
+    font-weight: bold;
+    color: grey;
+}
+
+.allexpenses {
+    overflow-y: auto;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.expense {
+    border-radius: 4px;
+    padding: 5px;
+    box-shadow: 0 0 2px grey;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition-property: border;
+    transition-duration: 0.25s;
+}
+
+.expense:hover {
+    border: 1px solid cornflowerblue;
+}
+
+.expensemoney {
+    font-size: 1.5em;
+    color: cornflowerblue;
+    letter-spacing: 2px;
+}
+
+.expenselabel {
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    color: #333;
+    font-size: 0.8em;
+    float: right;
+}
+
+.expenseremark {
+    font-size: 0.8em;
+    color: #333;
+}
+
+.refreshbtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    border: 1px solid grey;
+    font-size: 1.6em;
+    color: cornflowerblue;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.refreshbtn:hover {
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    animation: do360 linear 0.5s;
+}
+
+@keyframes do360 {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(180deg) }
 }
