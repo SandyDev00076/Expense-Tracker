@@ -20,7 +20,12 @@ export class ListComponent extends Component {
                             <br />
                             <span className="expenseremark">{expense.remark}</span>
                         </div>
-                        <span className="expenselabel">{expense.label}</span>
+                        <div>
+                            <span className="expenselabel">{expense.label}</span>
+                            <br />
+                            <br />
+                            <i className="far fa-trash-alt" id="delicon" onClick={() => this.deleteExpense(expense._id)}></i>
+                        </div>
                     </div>)
                 })}
             </div>
@@ -37,6 +42,13 @@ export class ListComponent extends Component {
     getRecentData = () => {
         axios.get('http://localhost:4000/expenses').then((data) => {
             this.setState({ expenseList: data.data });
+        });
+    }
+
+    deleteExpense = (id) => {
+        axios.delete(`http://localhost:4000/expenses/${id}`).then((data) => {
+            alert(data.data.message);
+            this.getRecentData();
         });
     }
 }

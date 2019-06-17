@@ -14,24 +14,27 @@
 
 .allexpenses {
     overflow-y: auto;
+    max-height: 80vh;
     text-align: left;
     margin-bottom: 10px;
+    border-bottom: 1px solid rgb(221, 221, 221);
 }
 
 .expense {
     border-radius: 4px;
-    padding: 5px;
+    padding: 10px;
     box-shadow: 0 0 2px grey;
     margin: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition-property: border;
+    transition-property: background-color;
     transition-duration: 0.25s;
+    cursor: pointer;
 }
 
 .expense:hover {
-    border: 1px solid cornflowerblue;
+    background-color: whitesmoke;
 }
 
 .expensemoney {
@@ -71,8 +74,16 @@
 .refreshbtn:hover {
     background-color: cornflowerblue;
     color: white;
-    border: none;
+    border: 1px solid white;
     animation: do360 linear 0.5s;
+}
+
+#delicon {
+    float: right;
+}
+
+#delicon:hover {
+    color: orangered;
 }
 
 @keyframes do360 {

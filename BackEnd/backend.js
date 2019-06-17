@@ -36,6 +36,16 @@ app.get('/expenses', (req, res) => {
     })
 });
 
+app.delete('/expenses/:id', (req, res) => {
+    Expense.deleteOne({ _id: req.params.id }, (err) => {
+        if (err) console.error(err);
+        res.send({
+            message: 'Expense successfully deleted!',
+            status: 'done'
+        });
+    });
+});
+
 // listen tells the server to listen to a port.
 app.listen(PORT, () => {
     console.log(`Server is running at port ${PORT}`);
