@@ -57,19 +57,26 @@ export class HomeComponent extends Component {
                     <div className="taskbtn" id="clear" onClick={() => this.changeMoney('#')}>
                         Clear
                     </div>
-                    <div className="taskbtn" id="record" onClick={this.recordExpense}>
+                    <div className="taskbtn" id="record" onClick={() => this.displayAddedModal(true)}>
                         Record
                     </div>
                 </div>
                 <Modal show={this.state.showAddedModal} onHide={() => this.displayAddedModal(false)}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Expense Added</Modal.Title>
+                        <Modal.Title>Expense to be added</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        Expense has been added successfully!
+                        Do you really want to record the following expense -
+                        <br />
+                        Expense - {this.state.money}
+                        <br />
+                        Label - {(this.state.label) ? this.state.label : 'No label'}
+                        <br />
+                        Remark - {(this.state.remark) ? this.state.remark : 'No remark'}
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" onClick={() => this.displayAddedModal(false)}>Ok</Button>
+                        <Button variant="secondary" onClick={this.dismissRecordAddition}>Dismiss</Button>
+                        <Button variant="primary" onClick={this.recordExpense}>YES</Button>
                     </Modal.Footer>
                 </Modal>
             </div>
@@ -108,12 +115,21 @@ export class HomeComponent extends Component {
         let { money, label, remark } = this.state;
         let expense = new Expense(moment().toISOString(true), remark, label, parseInt(money));
         axios.post('http://localhost:4000/expenses', expense).then((data) => {
-            this.displayAddedModal(true);
+            this.displayAddedModal(false);
             this.changeMoney('#');
+        })
+        .catch((err) => {
+            this.displayAddedModal(false);
+            alert(`Error - ${err}`);
         });
     }
 
     displayAddedModal = (flag) => {
         this.setState({ showAddedModal: flag });
+    }
+
+    dismissRecordAddition = () => {
+        this.changeMoney('#');
+        this.displayAddedModal(false);
     }
 }
