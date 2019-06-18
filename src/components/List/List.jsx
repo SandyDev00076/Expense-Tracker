@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './List.css';
 import axios from 'axios';
-import { Expense } from '../../utilities/expense';
+import { Modal, Button } from 'react-bootstrap';
 
 export class ListComponent extends Component {
     state = {
-        expenseList: []
+        expenseList: [],
+        showDeletedModal: false
     }
 
     render() {
@@ -14,7 +15,7 @@ export class ListComponent extends Component {
             <hr />
             <div className="allexpenses">
                 {this.state.expenseList.map(expense => {
-                    return (<div className="expense">
+                    return (<div className="expense" key={expense._id}>
                         <div>
                             <span className="expensemoney">{expense.money}&#8377;</span>
                             <br />
@@ -32,6 +33,17 @@ export class ListComponent extends Component {
             <div className="refreshbtn">
                 <i className="fas fa-sync-alt" onClick={this.getRecentData}></i>
             </div>
+            <Modal show={this.state.showDeletedModal} onHide={() => this.displayDeletedModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Expense Deleted</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Expense has been successfully deleted!
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => this.displayDeletedModal(false)}>OK</Button>
+                </Modal.Footer>
+            </Modal>
         </div>)
     }
 
@@ -47,8 +59,12 @@ export class ListComponent extends Component {
 
     deleteExpense = (id) => {
         axios.delete(`http://localhost:4000/expenses/${id}`).then((data) => {
-            alert(data.data.message);
+            this.displayDeletedModal(true);
             this.getRecentData();
         });
+    }
+
+    displayDeletedModal = (flag) => {
+        this.setState({ showDeletedModal: flag });
     }
 }
