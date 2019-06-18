@@ -57,9 +57,13 @@ export class HomeComponent extends Component {
                     <div className="taskbtn" id="clear" onClick={() => this.changeMoney('#')}>
                         Clear
                     </div>
+                    {(this.state.money) ? 
                     <div className="taskbtn" id="record" onClick={() => this.displayAddedModal(true)}>
                         Record
-                    </div>
+                    </div> : 
+                    <div className="taskbtn" id="recorddisabled">
+                        Record
+                    </div>}
                 </div>
                 <Modal show={this.state.showAddedModal} onHide={() => this.displayAddedModal(false)}>
                     <Modal.Header closeButton>

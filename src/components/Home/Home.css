@@ -105,6 +105,10 @@
     background-color: darkgreen;
 }
 
+.taskbtn#recorddisabled {
+    background-color: grey;
+}
+
 .remark {
     width: 100%;
     text-align: center;
