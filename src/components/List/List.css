@@ -5,6 +5,10 @@
     margin-left: 5px;
     padding: 10px;
     text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .listtitle {
@@ -14,8 +18,10 @@
 
 .allexpenses {
     overflow-y: auto;
+    flex: 1;
     max-height: 60vh;
     text-align: left;
+    margin-top: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid rgb(221, 221, 221);
 }

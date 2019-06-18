@@ -12,7 +12,6 @@ export class ListComponent extends Component {
     render() {
         return (<div className="listcontainer">
             <span className="listtitle">All Expenses</span>
-            <hr />
             <div className="allexpenses">
                 {this.state.expenseList.map(expense => {
                     return (<div className="expense" key={expense._id}>
