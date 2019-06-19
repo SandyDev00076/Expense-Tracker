@@ -72,11 +72,11 @@ export class CalculatorComponent extends Component {
                     <Modal.Body>
                         Do you really want to record the following expense -
                         <br />
-                        Expense - {this.state.money}
+                        Expense - <b>{this.state.money}</b>
                         <br />
-                        Label - {(this.state.label) ? this.state.label : 'No label'}
+                        Label - <b>{(this.state.label) ? this.state.label : 'No label'}</b>
                         <br />
-                        Remark - {(this.state.remark) ? this.state.remark : 'No remark'}
+                        Remark - <b>{(this.state.remark) ? this.state.remark : 'No remark'}</b>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.dismissRecordAddition}>Dismiss</Button>
