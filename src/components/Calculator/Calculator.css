@@ -1,8 +1,4 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+.calccontainer {
     font-family: zrnic;
     cursor: default;
     -webkit-user-select: none;
@@ -12,8 +8,7 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 5px grey;
-    width: 50%;
-    z-index: 5;
+    margin: 5px;
 }
 
 .moneyplace {
@@ -127,11 +122,4 @@
 @font-face {
     font-family: zrnic;
     src: url(../../assets/fonts/zrnic.woff);
-}
-
-/* MEDIA QUERY FOR MOBILES */
-@media screen and (max-width: 720px) {
-    .calculator {
-        width: 80%;
-    }
 }

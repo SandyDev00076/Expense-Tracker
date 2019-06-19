@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Home.css';
+import './Calculator.css';
 import { Templates } from '../../utilities/constants';
 import { Expense } from '../../utilities/expense';
 import axios from 'axios';
@@ -7,16 +7,16 @@ import * as moment from 'moment';
 import { ListComponent } from '../List/List';
 import { Modal, Button } from 'react-bootstrap';
 
-export class HomeComponent extends Component {
+export class CalculatorComponent extends Component {
     state = {
         money: '',
         label: 'None',
         remark: '',
         showAddedModal: false
     }
-    
+
     render() {
-        return (<div className="container">
+        return (<div className="calccontainer">
             <div className="calculator">
                 <div className="moneyplace">
                     {(this.state.money.length === 0) ? "What's the expense?" : this.state.money}
@@ -57,12 +57,12 @@ export class HomeComponent extends Component {
                     <div className="taskbtn" id="clear" onClick={() => this.changeMoney('#')}>
                         Clear
                     </div>
-                    {(this.state.money) ? 
-                    <div className="taskbtn" id="record" onClick={() => this.displayAddedModal(true)}>
-                        Record
-                    </div> : 
-                    <div className="taskbtn" id="recorddisabled">
-                        Record
+                    {(this.state.money) ?
+                        <div className="taskbtn" id="record" onClick={() => this.displayAddedModal(true)}>
+                            Record
+                    </div> :
+                        <div className="taskbtn" id="recorddisabled">
+                            Record
                     </div>}
                 </div>
                 <Modal show={this.state.showAddedModal} onHide={() => this.displayAddedModal(false)}>
@@ -84,23 +84,22 @@ export class HomeComponent extends Component {
                     </Modal.Footer>
                 </Modal>
             </div>
-            <ListComponent />
         </div>)
     }
 
     changeMoney = (keyPressed) => {
-        switch(keyPressed) {
+        switch (keyPressed) {
             case '-1': {
                 if (this.state.money.length !== 0) this.setState({ money: this.state.money.substring(0, this.state.money.length - 1) });
             }
-            break;
+                break;
             case '#': {
                 this.setState({ money: '', remark: '', label: '' }, () => {
                     document.getElementById('remarkid').value = '';
                     document.getElementById('templates').value = 'None';
                 });
             }
-            break;
+                break;
             default: {
                 if ((keyPressed !== '0' && keyPressed !== '00') || this.state.money.length !== 0) this.setState({ money: `${this.state.money}${keyPressed}` });
             }
@@ -122,10 +121,10 @@ export class HomeComponent extends Component {
             this.displayAddedModal(false);
             this.changeMoney('#');
         })
-        .catch((err) => {
-            this.displayAddedModal(false);
-            alert(`Error - ${err}`);
-        });
+            .catch((err) => {
+                this.displayAddedModal(false);
+                alert(`Error - ${err}`);
+            });
     }
 
     displayAddedModal = (flag) => {
