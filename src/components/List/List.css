@@ -4,6 +4,8 @@
     margin: 5px;
     padding: 10px;
     text-align: center;
+    background-color: white;
+    height: 90vh;
 
     display: flex;
     flex-direction: column;

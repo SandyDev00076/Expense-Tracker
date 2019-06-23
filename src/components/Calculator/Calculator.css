@@ -1,14 +1,9 @@
-.calccontainer {
-    font-family: zrnic;
-    cursor: default;
-    -webkit-user-select: none;
-}
-
 .calculator {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 5px grey;
     margin: 5px;
+    background-color: white;
 }
 
 .moneyplace {

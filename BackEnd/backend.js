@@ -73,6 +73,17 @@ app.delete('/expenses/:id', (req, res) => {
     });
 });
 
+// handler for returning the base statistics.
+app.get('/expenses/stats', (req, res) => {
+    Expense.find((err, expenses) => {
+        let sum = 0;
+        expenses.forEach(exp => sum += exp.money);
+        res.send({
+            total: sum
+        });
+    });
+});
+
 // listen tells the server to listen to a port.
 app.listen(PORT, () => {
     console.log(`Server is running at port ${PORT}`);

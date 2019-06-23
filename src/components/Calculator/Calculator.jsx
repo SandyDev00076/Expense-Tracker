@@ -16,74 +16,72 @@ export class CalculatorComponent extends Component {
     }
 
     render() {
-        return (<div className="calccontainer">
-            <div className="calculator">
-                <div className="moneyplace">
-                    {(this.state.money.length === 0) ? "What's the expense?" : this.state.money}
-                </div>
-                <div className="moneylabel">
-                    <span>Pick a label</span>
-                    <span>
-                        <i className="fas fa-caret-right"></i>
-                        <i className="fas fa-caret-right"></i>
-                        <i className="fas fa-caret-right"></i>
-                    </span>
-                    <select className="moneylabeloption" onChange={(event) => this.getLabel(event)} id="templates">
-                        {Templates.map(template => {
-                            return (<option>{template.title}</option>)
-                        })}
-                    </select>
-                </div>
-                <hr />
-                <div className="keys">
-                    <div className="powerkey" onClick={() => this.changeMoney('1')}>1</div>
-                    <div className="powerkey" onClick={() => this.changeMoney('2')}>2</div>
-                    <div className="powerkey" onClick={() => this.changeMoney('3')}>3</div>
-                    <div className="powerkey" onClick={() => this.changeMoney('4')}>4</div>
-                    <div className="powerkey" onClick={() => this.changeMoney('5')}>5</div>
-                    <div className="powerkey" onClick={() => this.changeMoney('6')}>6</div>
-                    <div className="powerkey" onClick={() => this.changeMoney('7')}>7</div>
-                    <div className="powerkey" onClick={() => this.changeMoney('8')}>8</div>
-                    <div className="powerkey" onClick={() => this.changeMoney('9')}>9</div>
-                    <div className="powerkey" onClick={() => this.changeMoney('00')}>00</div>
-                    <div className="powerkey" onClick={() => this.changeMoney('0')}>0</div>
-                    <div className="powerkey" onClick={() => this.changeMoney('-1')}>DEL</div>
-                </div>
-                <hr />
-                <div className="remark">
-                    <input className="remarkfield" id="remarkid" placeholder="Add some remark" onChange={(event) => this.getRemark(event)}></input>
-                </div>
-                <div className="taskbar">
-                    <div className="taskbtn" id="clear" onClick={() => this.changeMoney('#')}>
-                        Clear
-                    </div>
-                    {(this.state.money) ?
-                        <div className="taskbtn" id="record" onClick={() => this.displayAddedModal(true)}>
-                            Record
-                    </div> :
-                        <div className="taskbtn" id="recorddisabled">
-                            Record
-                    </div>}
-                </div>
-                <Modal show={this.state.showAddedModal} onHide={() => this.displayAddedModal(false)}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Expense to be added</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        Do you really want to record the following expense -
-                        <br />
-                        Expense - <b>{this.state.money}</b>
-                        <br />
-                        Label - <b>{(this.state.label) ? this.state.label : 'No label'}</b>
-                        <br />
-                        Remark - <b>{(this.state.remark) ? this.state.remark : 'No remark'}</b>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.dismissRecordAddition}>Dismiss</Button>
-                        <Button variant="primary" onClick={this.recordExpense}>YES</Button>
-                    </Modal.Footer>
-                </Modal>
+        return (<div className="calculator">
+            <div className="moneyplace">
+                {(this.state.money.length === 0) ? "What's the expense?" : this.state.money}
             </div>
+            <div className="moneylabel">
+                <span>Pick a label</span>
+                <span>
+                    <i className="fas fa-caret-right"></i>
+                    <i className="fas fa-caret-right"></i>
+                    <i className="fas fa-caret-right"></i>
+                </span>
+                <select className="moneylabeloption" onChange={(event) => this.getLabel(event)} id="templates">
+                    {Templates.map(template => {
+                        return (<option>{template.title}</option>)
+                    })}
+                </select>
+            </div>
+            <hr />
+            <div className="keys">
+                <div className="powerkey" onClick={() => this.changeMoney('1')}>1</div>
+                <div className="powerkey" onClick={() => this.changeMoney('2')}>2</div>
+                <div className="powerkey" onClick={() => this.changeMoney('3')}>3</div>
+                <div className="powerkey" onClick={() => this.changeMoney('4')}>4</div>
+                <div className="powerkey" onClick={() => this.changeMoney('5')}>5</div>
+                <div className="powerkey" onClick={() => this.changeMoney('6')}>6</div>
+                <div className="powerkey" onClick={() => this.changeMoney('7')}>7</div>
+                <div className="powerkey" onClick={() => this.changeMoney('8')}>8</div>
+                <div className="powerkey" onClick={() => this.changeMoney('9')}>9</div>
+                <div className="powerkey" onClick={() => this.changeMoney('00')}>00</div>
+                <div className="powerkey" onClick={() => this.changeMoney('0')}>0</div>
+                <div className="powerkey" onClick={() => this.changeMoney('-1')}>DEL</div>
+            </div>
+            <hr />
+            <div className="remark">
+                <input className="remarkfield" id="remarkid" placeholder="Add some remark" onChange={(event) => this.getRemark(event)}></input>
+            </div>
+            <div className="taskbar">
+                <div className="taskbtn" id="clear" onClick={() => this.changeMoney('#')}>
+                    Clear
+                    </div>
+                {(this.state.money) ?
+                    <div className="taskbtn" id="record" onClick={() => this.displayAddedModal(true)}>
+                        Record
+                    </div> :
+                    <div className="taskbtn" id="recorddisabled">
+                        Record
+                    </div>}
+            </div>
+            <Modal show={this.state.showAddedModal} onHide={() => this.displayAddedModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Expense to be added</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Do you really want to record the following expense -
+                        <br />
+                    Expense - <b>{this.state.money}</b>
+                    <br />
+                    Label - <b>{(this.state.label) ? this.state.label : 'No label'}</b>
+                    <br />
+                    Remark - <b>{(this.state.remark) ? this.state.remark : 'No remark'}</b>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={this.dismissRecordAddition}>Dismiss</Button>
+                    <Button variant="primary" onClick={this.recordExpense}>YES</Button>
+                </Modal.Footer>
+            </Modal>
         </div>)
     }
 
